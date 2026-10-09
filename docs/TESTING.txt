@@ -1,0 +1,30 @@
+# Reproducing checks
+
+Close this project's editor before batch commands. Use the full path to your Unity executable and the project directory as `PROJECT`.
+
+```powershell
+& 'C:\Program Files\Unity\Hub\Editor\6000.5.6f1\Editor\Unity.exe' -batchmode -nographics -quit -projectPath PROJECT -executeMethod JunctionLab.Editor.SimulationChecks.Run -logFile checks.log
+& 'C:\Program Files\Unity\Hub\Editor\6000.5.6f1\Editor\Unity.exe' -batchmode -quit -projectPath PROJECT -executeMethod JunctionLab.Editor.ProjectBuilder.BuildWindows -logFile build.log
+```
+
+These commands require Unity licensing access. A zero exit alone is not enough; check for `TRAFFIC_TESTS_PASS` or `TRAFFIC_BUILD_PASS` and inspect errors in the log. Generated test results are in `Evidence/`.
+
+The runtime check is launched from `Builds/Windows`:
+
+```powershell
+.\TrafficJunctionSimulator.exe -trafficSmoke -screen-width 1600 -screen-height 1000 -screen-fullscreen 0 -logFile runtime.log
+```
+
+It exercises pause/resume, routes, camera modes, a phase request, traffic progress, and reset. It saves `Evidence/scene-preview.png` and a runtime result beside the executable. The preview is an off-screen render of the actual running scene, excluding the IMGUI dashboard; this works even when Windows hides the player. Controls are invoked programmatically, not through mouse-click automation. The normal player keeps running; only the explicitly requested smoke mode exits automatically.
+
+## Manual acceptance
+
+1. Watch each approach receive service through a complete cycle.
+2. Verify vehicles stop behind red signals, follow their lane, turn, and leave.
+3. Increase demand: queues and rejected arrivals should grow rather than spawn overlapping cars.
+4. Toggle fixed/adaptive timing and request a phase: yellow/all-red should still run.
+5. Pause for several seconds: simulation time and vehicles should stop. Resume should continue.
+6. Reset: trip counts and simulation time return to zero; control settings remain selected.
+7. Toggle routes and top view. Resize the window and verify controls remain accessible.
+
+Automated geometric separation is a center-distance check, not a full mesh collision proof. Visual review is still useful for turning behavior and scene readability.
