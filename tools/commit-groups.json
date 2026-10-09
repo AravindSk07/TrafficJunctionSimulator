@@ -1,0 +1,22 @@
+[
+  {"id":1,"message":"chore: initialize Unity project settings and licensing","paths":[".gitignore","LICENSE","Packages/*","ProjectSettings/*","Assets/Traffic.meta","Assets/Traffic/Editor.meta","Assets/Traffic/Scripts.meta","Assets/Traffic/Materials.meta","Assets/Traffic/Prefabs.meta","Assets/Traffic/Scenes.meta","Assets/Traffic/Settings.meta"]},
+  {"id":2,"message":"feat: add configurable traffic settings asset","paths":["Assets/Traffic/Scripts/TrafficSettings.cs*","Assets/Traffic/Settings/*"]},
+  {"id":3,"message":"feat: add distance-based straight and turning routes","paths":["Assets/Traffic/Scripts/TrafficRoute.cs*"]},
+  {"id":4,"message":"feat: implement deterministic traffic and signal simulation","paths":["Assets/Traffic/Scripts/TrafficModel.cs*"]},
+  {"id":5,"message":"art: add downtown material and signal palette","paths":["Assets/Traffic/Materials/*"]},
+  {"id":6,"message":"art: add compact car prefab","paths":["Assets/Traffic/Prefabs/CompactBlue.prefab*"]},
+  {"id":7,"message":"art: add taxi vehicle prefab","paths":["Assets/Traffic/Prefabs/TaxiGold.prefab*"]},
+  {"id":8,"message":"art: add delivery van prefab","paths":["Assets/Traffic/Prefabs/DeliveryVan.prefab*"]},
+  {"id":9,"message":"art: add reusable park tree prefab","paths":["Assets/Traffic/Prefabs/ParkTree.prefab*"]},
+  {"id":10,"message":"art: add modular city building prefab","paths":["Assets/Traffic/Prefabs/CityBuilding.prefab*"]},
+  {"id":11,"message":"feat: connect simulation to pooled vehicles and scene controls","paths":["Assets/Traffic/Scripts/JunctionController.cs*"]},
+  {"id":12,"message":"feat: add interactive traffic dashboard","paths":["Assets/Traffic/Scripts/TrafficDashboard.cs*"]},
+  {"id":13,"message":"test: add standalone runtime smoke automation","paths":["Assets/Traffic/Scripts/RuntimeSmokeTest.cs*"]},
+  {"id":14,"message":"test: verify spacing signals determinism and traffic progress","paths":["Assets/Traffic/Editor/SimulationChecks.cs*","docs/TESTING.txt"]},
+  {"id":15,"message":"tools: add scene generation and Windows build commands","paths":["Assets/Traffic/Editor/ProjectBuilder.cs*"]},
+  {"id":16,"message":"feat: assemble playable downtown intersection scene","paths":["Assets/Traffic/Scenes/*"]},
+  {"id":17,"message":"docs: add project quickstart and asset attribution","paths":["README.txt","ASSET_CREDITS.txt"]},
+  {"id":18,"message":"docs: explain simulation architecture and tradeoffs","paths":["docs/SYSTEMS.txt"]},
+  {"id":19,"message":"test: record verified simulation and runtime evidence","paths":["Evidence/*"]},
+  {"id":20,"message":"docs: add portfolio notes and reviewable commit workflow","paths":["docs/PORTFOLIO.txt","COMMIT_PLAN.txt","tools/*"]}
+]

@@ -1,0 +1,27 @@
+# Verification record
+
+Verified locally on 2026-09-29 with Unity 6000.5.6f1 on Windows.
+
+## Editor and build
+
+- Imported and compiled the runtime and editor scripts with Unity's compiler.
+- Generated and saved the scene, materials, configuration asset, and five reusable prefabs.
+- Corrected stop anchors and stop-line markings after visual review so vehicles wait before decorative crosswalks.
+- Recompiled and successfully built the final Windows standalone player.
+- Final verification log contains `TRAFFIC_TESTS_PASS` and `TRAFFIC_BUILD_PASS`, with no C# compilation errors or managed exceptions.
+
+## Model verification
+
+See `simulation-checks.txt` for the measured output from six 300-second simulated scenarios: fixed/adaptive control, each with demand 0.1, 0.35, and 0.65 per approach per second. All checks passed for capacity, deterministic replay counts, finite distances, red-light admission, exclusive junction reservation, vehicle separation, traffic progress, and approach service. Additional tests passed for blocked spawns, opposing traffic, turning, and draining the network.
+
+The measured minimum center separation was 4.00 meters in these scenarios. This is not a full mesh collision proof, nor a claim covering every possible inspector configuration. Adaptive timing is an experiment, not a claimed improvement over fixed timing; compare the recorded results.
+
+## Runtime and visual review
+
+See `runtime-check.txt` for the standalone player's observed results. Runtime controls were invoked programmatically; mouse-click interaction was not automated. The off-screen scene preview excludes the IMGUI dashboard. Full dashboard layout and live editor Play mode were not visually verified because no Unity MCP connection was available.
+
+The initial Direct3D 12 hidden-window screenshot attempt failed; a Direct3D 11 backbuffer capture was black. The smoke test therefore renders the actual running camera into a RenderTexture for a reliable scene-only preview. This is not a fabricated gameplay screenshot.
+
+## Commit packaging
+
+All source files are assigned to exactly one of 20 staging groups. No repository, commit, remote, push, or fabricated timestamp was created. Generated caches and builds are excluded from the source archive and ignored by Git.

@@ -1,0 +1,7 @@
+# Asset credits
+
+All scene layouts, prefab arrangements, code, and material color definitions were created for this project with AI assistance. Cars, trees, buildings, road markings, and signal housings use Unity primitive geometry. No downloaded third-party art, textures, fonts, or audio are distributed.
+
+The project's authored source and asset arrangements are supplied under the included MIT license. Unity itself, built-in meshes, shaders, fonts, and runtime components remain subject to Unity's terms; the project license does not relicense those engine components.
+
+The three car prefabs are CompactBlue, TaxiGold, and DeliveryVan. ParkTree and CityBuilding are reusable scenery prefabs. These can be replaced with appropriately licensed assets without changing simulation rules.

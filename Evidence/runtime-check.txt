@@ -1,0 +1,2 @@
+Runtime passed. Completed=9; Active=21; Pause, routes, camera and phase request exercised programmatically.
+Reset counters and control preservation passed. Scene preview is an off-screen camera render, excluding the IMGUI dashboard.

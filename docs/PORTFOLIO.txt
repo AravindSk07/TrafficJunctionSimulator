@@ -1,0 +1,20 @@
+# Portfolio notes
+
+## Accurate description
+
+"A Unity traffic simulation prototype built with AI assistance, featuring distance-based routes, protected intersection reservations, configurable signals, pooled vehicle views, and deterministic verification."
+
+## Explain these decisions
+
+- Why use distance along a route instead of raw waypoint index for following gaps?
+- What distinguishes an approach green light from intersection admission?
+- Why does clearance wait for a committed car after green ends?
+- What prevents adaptive control from starving a quieter approach?
+- What metrics are measured, and what do rejected spawn attempts mean?
+- Where does O(n²) work happen, and how would you replace it with spatial indexing?
+
+## Record your work
+
+Add only changes you actually implement and measurements you actually collect. For each improvement, record the problem, code changed, verification, and result. Keep the AI-assistance statement accurate.
+
+Suggested next experiments: compare fixed/adaptive throughput at the same seed and demand; implement a spatial grid; add compatible-turn reservations; add an original intersection layout. Do not claim mobile performance or industry traffic accuracy without measuring and validating it.

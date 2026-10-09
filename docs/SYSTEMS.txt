@@ -1,0 +1,25 @@
+# System map
+
+`TrafficSettings` supplies defaults to `TrafficModel`. The model owns route geometry, car data, queues, reservation, signal state, and trip statistics. `JunctionController` advances it at 50 fixed simulation steps per simulated second and synchronizes pooled car views. `TrafficDashboard` changes run-time parameters and displays the model's statistics.
+
+`ProjectBuilder` generates real materials, reusable prefabs, the settings asset, and a saved scene. It refuses to regenerate over an existing scene to protect manual edits. `SimulationChecks` runs deterministic model checks in the editor. `RuntimeSmokeTest` runs only when a standalone player receives `-trafficSmoke`.
+
+## Routes and vehicle movement
+
+Each route starts 38 meters from the center and stops 13 meters away, before the crosswalk. The turning curve begins 9 meters from the center, follows a cubic Bezier approximation through the junction, and ends on an outgoing lane. Thirty-two curve segments are parameterized by cumulative distance. All turns share their approach distance, allowing different-turn vehicles to queue together.
+
+Speed approaches the configured cruise speed with bounded acceleration. Stopping speed derives from available distance. Movement is clamped to available space, preventing large simulation steps from advancing a blocked vehicle through a stop line. The fixed-step driver caps real frame delta to avoid runaway catch-up after focus stalls.
+
+## Signals and reservation
+
+Only one approach receives green. Admission requires green, proximity to the stop anchor, and an empty intersection reservation. Yellow admits no new vehicle. All-red waits for both its minimum clearance time and reservation release. A committed vehicle continues through after its approach changes color. The reservation remains held until its rear clears the junction.
+
+Fixed mode rotates approaches. Adaptive mode scores the other approaches by queued demand plus service age. Both modes enforce a four-second minimum green before manual or empty-queue early termination and a configurable maximum green.
+
+## Metrics
+
+Completed trips count vehicles reaching the exit. Mean stopped time divides stopped time accumulated by completed vehicles by completed trips, not by all currently queued vehicles. Demand describes requested arrivals, not measured throughput. Queue counts are refreshed at the beginning of each step and can lag one step behind newly spawned vehicles.
+
+## Scaling boundaries
+
+Vehicles use simple kinematic geometry rather than rigidbody driving. Pairwise spacing checks are O(n²). The simulation uses neither DOTS nor a navigation mesh. This keeps the project small and deterministic. A spatial grid, compatible-movement reservations, and turn-specific lanes are meaningful future extensions.
